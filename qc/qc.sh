@@ -2,10 +2,11 @@
 
 VERSION=0.2
 
-if [ $# -lt 1 ] || [ $# -gt 2 ];
+if [ $# -ne 1 ];
 then
 	echo
 	echo qc version $VERSION
+	echo
 	echo USAGE:
 	echo "qc <expression>"
 	echo "Argument should be surrounded quotes or have no spaces."
@@ -56,6 +57,11 @@ case "$1" in
 	;;
 -sp) echo "Opening Python shell with scipy library..."
 	python -ic "from scipy import *";
+	exit
+	;;
+-v) echo
+	echo qc version $VERSION
+	echo
 	exit
 	;;
 esac

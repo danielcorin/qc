@@ -1,1 +1,2 @@
-#qc README
+#qc
+qc is for the times when you just want the answer to a math problem. Using bash and the python math library, qc accepts in line math equations with no pipes or command line tricks. The result of the calculation is output to the command line and automatically copied to the clipboard for easy of use.
