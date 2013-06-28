@@ -10,7 +10,8 @@ then
 	echo
 	echo USAGE:
 	echo "qc <expression>"
-	echo "Argument should be surrounded quotes or have no spaces."
+	echo "Expression should be surrounded quotes or have no spaces."
+	echo "Expressions with parentheses require quotes."
 	echo
 	echo Options:	
 	echo -a: about
@@ -33,7 +34,7 @@ case "$1" in
 	echo
 	echo Written by Daniel Corin
 	echo June 2013
-	echo Original idea from Dave D\'Alessandro
+	echo "Modified from Dave D'Alessandro's idea for a \"reverse reverse Polish\"" calculator
 	echo
 	exit
 	;;
