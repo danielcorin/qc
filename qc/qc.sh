@@ -1,21 +1,25 @@
 #!/bin/bash
 
-VERSION=0.2
+VERSION=0.3
+
+PLATFORM=$(uname)
+
 
 if [ $# -ne 1 ];
 then
 	echo
-	echo qc version $VERSION
-	echo
 	echo USAGE:
 	echo "qc <expression>"
 	echo "Argument should be surrounded quotes or have no spaces."
+	echo
 	echo Options:	
 	echo -a: about
+	echo -g: gnuplot
 	echo -h: help
-	echo -np: shell with numpy library
-	echo -sp: shell with scipy library
-	echo -s: shell with math library
+	echo -o: Octave shell
+	echo -np: Python shell with numpy library
+	echo -sp: Python shell with scipy library
+	echo -s: Python shell with math library
 	echo -v: version
 	echo
 	exit
@@ -29,34 +33,75 @@ case "$1" in
 	echo
 	echo Written by Daniel Corin
 	echo June 2013
-	echo Special thanks to Dave D\'Alessandro
+	echo Original idea from Dave D\'Alessandro
+	echo
+	exit
+	;;
+-g) echo "Opening gnuplot..."
+	gnuplot 2> /dev/null
+	if [ $? -ne 0 ]; then
+		echo
+		echo "Octave not installed."
+		echo "Get Octave here: http://www.gnuplot.info/"
+	fi
 	echo
 	exit
 	;;
 -h)	echo	
 	echo "Using qc:"
-	echo "qc passes its input argument directly to the python intepreter with its full math library imported."
-	echo "It uses the python syntax for operators:"
-	echo "Addition: 1+4"
+	echo
+	echo "qc passes its input argument directly to the Python intepreter with the full math library imported."
+	echo "Example of Python syntax for operators:"
+	echo "Add: 1+4"
 	echo "Subtract: 3-pi"
-	echo "Multiply: 6*7"
+	echo "Multiply: 6.2*7"
 	echo "Divide: 3.0/8"
-	echo "Powers: 2**10"
+	echo "Exponents: 2**10"
+	echo "Modulus: 7%2"
+	echo
 	echo "It will handle simple expression such as 10**8+1 nicely."
-	echo "More complex expression must be passed with quotes: \"exp(2.7)\""
+	echo "Expressions with binary operators or parentheses must be passed with quotes: 'exp(2.7)' or \"1 << 4\""
+	echo
+	exit
+	;;
+-o) echo "Opening Octave..."
+	octave 2> /dev/null
+	if [ $? -ne 0 ]; then
+		echo
+		echo "Octave not installed."
+		echo "Get Octave here: http://www.gnu.org/software/octave/"
+	fi
 	echo
 	exit
 	;;
 -s) echo "Opening Python shell with math library..."
-	python -ic "from math import *";
+	python -ic "from math import *" 2> /dev/null
+	if [ $? -ne 0 ]; then
+		echo
+		echo "Python not installed."
+		echo "Get Python here: http://python.org/"
+	fi
+	echo
 	exit
 	;;
 -np) echo "Opening Python shell with numpy library..."
-	python -ic "from numpy import *";
+	python -ic "from numpy import *" 2> /dev/null
+	if [ $? -ne 0 ]; then
+		echo
+		echo "Numpy not installed."
+		echo "Get Numpy here: http://www.numpy.org/"
+	fi
+	echo
 	exit
 	;;
 -sp) echo "Opening Python shell with scipy library..."
-	python -ic "from scipy import *";
+	python -ic "from scipy import *" 2> /dev/null
+	if [ $? -ne 0 ]; then
+		echo
+		echo "Scipy not installed."
+		echo "Get Scipy here: http://scipy.org/"
+	fi
+	echo
 	exit
 	;;
 -v) echo
@@ -66,7 +111,33 @@ case "$1" in
 	;;
 esac
 
-python -c "from math import *; print $1" | pbcopy
-pbpaste
 
 
+
+if [ "$PLATFORM" == "Linux" ]; then
+# spacing is important here
+	python -c "from math import *;
+import pygtk
+pygtk.require('2.0')
+import gtk
+eval = $1
+clipboard = gtk.clipboard_get()
+clipboard.set_text('%s' % str(eval))
+clipboard.store()
+print eval" 2> /dev/null
+
+elif [ "$PLATFORM" == "Darwin" ]; then
+	python -c "from math import *; print $1" | pbcopy
+	pbpaste
+else
+	echo Platform $PLATFORM not supported.
+fi
+
+
+if [ $? -ne 0 ]; then
+	echo
+	echo "Invalid use."
+	echo "See \"qc -h\" for help."
+	echo
+	exit 1
+fi
