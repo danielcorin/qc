@@ -42,8 +42,8 @@ case "$1" in
 	gnuplot 2> /dev/null
 	if [ $? -ne 0 ]; then
 		echo
-		echo "Octave not installed."
-		echo "Get Octave here: http://www.gnuplot.info/"
+		echo "Gnuplot not installed."
+		echo "Get gnuplot here: http://www.gnuplot.info/"
 	fi
 	echo
 	exit
