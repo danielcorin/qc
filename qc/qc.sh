@@ -15,6 +15,7 @@ then
 	echo Options:	
 	echo -a: about
 	echo -h: help
+	echo -s: Python shell with math library
 	echo -v: version
 	echo
 	exit
