@@ -22,15 +22,7 @@ Options:
 
 -a: about
 
--g: gnuplot
-
 -h: help
-
--o: Octave shell
-
--np: Python shell with numpy library
-
--sp: Python shell with scipy library
 
 -s: Python shell with math library
 
@@ -93,6 +85,8 @@ An example using the `sqrt()` function in qc:
 0.2: Add output to clipboard (for OSX)
 
 0.3: Add output to clipboard Linux, scientific programming shortcuts
+
+0.4: Stripped down functionality to only obviously useful flags
 
 #Known issues
 May lag on first use while the Python interpreter starts
