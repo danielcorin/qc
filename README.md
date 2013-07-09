@@ -41,7 +41,7 @@ Options:
 
 Addition
 
-	shell$ qc 3.1+8
+	$ qc 3.1+8
 	11.1
 
 Subtraction with constants

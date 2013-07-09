@@ -1,9 +1,8 @@
 #!/bin/bash
 
-VERSION=0.3
+VERSION=0.4
 
 PLATFORM=$(uname)
-
 
 if [ $# -ne 1 ];
 then
@@ -15,17 +14,11 @@ then
 	echo
 	echo Options:	
 	echo -a: about
-	echo -g: gnuplot
 	echo -h: help
-	echo -o: Octave shell
-	echo -np: Python shell with numpy library
-	echo -sp: Python shell with scipy library
-	echo -s: Python shell with math library
 	echo -v: version
 	echo
 	exit
 fi
-
 
 case "$1" in
 -a)
@@ -34,17 +27,7 @@ case "$1" in
 	echo
 	echo Written by Daniel Corin
 	echo June 2013
-	echo "Modified from Dave D'Alessandro's idea for a \"reverse reverse Polish\"" calculator
-	echo
-	exit
-	;;
--g) echo "Opening gnuplot..."
-	gnuplot 2> /dev/null
-	if [ $? -ne 0 ]; then
-		echo
-		echo "Gnuplot not installed."
-		echo "Get gnuplot here: http://www.gnuplot.info/"
-	fi
+	echo "Modified from Dave D'Alessandro's idea for prefix addition in the command line"
 	echo
 	exit
 	;;
@@ -65,16 +48,6 @@ case "$1" in
 	echo
 	exit
 	;;
--o) echo "Opening Octave..."
-	octave 2> /dev/null
-	if [ $? -ne 0 ]; then
-		echo
-		echo "Octave not installed."
-		echo "Get Octave here: http://www.gnu.org/software/octave/"
-	fi
-	echo
-	exit
-	;;
 -s) echo "Opening Python shell with math library..."
 	python -ic "from math import *" 2> /dev/null
 	if [ $? -ne 0 ]; then
@@ -85,35 +58,12 @@ case "$1" in
 	echo
 	exit
 	;;
--np) echo "Opening Python shell with numpy library..."
-	python -ic "from numpy import *" 2> /dev/null
-	if [ $? -ne 0 ]; then
-		echo
-		echo "Numpy not installed."
-		echo "Get Numpy here: http://www.numpy.org/"
-	fi
-	echo
-	exit
-	;;
--sp) echo "Opening Python shell with scipy library..."
-	python -ic "from scipy import *" 2> /dev/null
-	if [ $? -ne 0 ]; then
-		echo
-		echo "Scipy not installed."
-		echo "Get Scipy here: http://scipy.org/"
-	fi
-	echo
-	exit
-	;;
 -v) echo
 	echo qc version $VERSION
 	echo
 	exit
 	;;
 esac
-
-
-
 
 if [ "$PLATFORM" == "Linux" ]; then
 # spacing is important here
@@ -133,7 +83,6 @@ elif [ "$PLATFORM" == "Darwin" ]; then
 else
 	echo Platform $PLATFORM not supported.
 fi
-
 
 if [ $? -ne 0 ]; then
 	echo
