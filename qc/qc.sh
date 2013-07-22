@@ -36,7 +36,8 @@ case "$1" in
 	echo "Using qc:"
 	echo
 	echo "qc passes its input argument directly to the Python intepreter with the full math library imported."
-	echo "Example of Python syntax for operators:"
+	echo
+	echo "Examples using Python syntax for operators:"
 	echo "Add: 1+4"
 	echo "Subtract: 3-pi"
 	echo "Multiply: 6.2*7"
@@ -44,7 +45,7 @@ case "$1" in
 	echo "Exponents: 2**10"
 	echo "Modulus: 7%2"
 	echo
-	echo "It will handle simple expression such as 10**8+1 nicely."
+	echo "It handles simple expression such as 10**8+1 nicely."
 	echo "Expressions with binary operators or parentheses must be passed with quotes: 'exp(2.7)' or \"1 << 4\""
 	echo
 	exit
@@ -79,7 +80,7 @@ clipboard.store()
 print eval" 2> /dev/null
 
 elif [ "$PLATFORM" == "Darwin" ]; then
-	python -c "from math import *; print $1" | pbcopy
+	python -c "from math import *; print $1" 2> /dev/null | pbcopy 
 	pbpaste
 else
 	echo Platform $PLATFORM not supported.
