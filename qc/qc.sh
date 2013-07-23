@@ -80,8 +80,9 @@ clipboard.store()
 print eval" 2> /dev/null
 
 elif [ "$PLATFORM" == "Darwin" ]; then
-	python -c "from math import *; print $1" 2> /dev/null | pbcopy 
+	python -c "from math import *; print $1" 2> /dev/null | tr -d '\n' | pbcopy 
 	pbpaste
+	echo
 else
 	echo Platform $PLATFORM not supported.
 fi
