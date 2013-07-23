@@ -73,11 +73,11 @@ if [ "$PLATFORM" == "Linux" ]; then
 import pygtk
 pygtk.require('2.0')
 import gtk
-eval = $1
+evaluated = $1
 clipboard = gtk.clipboard_get()
-clipboard.set_text('%s' % str(eval))
+clipboard.set_text(str(evaluated))
 clipboard.store()
-print eval" 2> /dev/null
+print evaluated" 2> /dev/null
 
 elif [ "$PLATFORM" == "Darwin" ]; then
 	python -c "from math import *; print $1" 2> /dev/null | tr -d '\n' | pbcopy 
