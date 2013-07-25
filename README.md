@@ -14,9 +14,7 @@ qc is a command line tool that calculates in-line math expressions with no pipes
 #Usage
 qc <expression\>
 
-Expression should be surrounded quotes or have no spaces.
-
-Expressions with parentheses require quotes.
+Expressions with parentheses or command line operators require quotes.
 
 Options:
 
@@ -33,7 +31,7 @@ Options:
 
 Addition
 
-	$ qc 3.1+8
+	$ qc 3.1 + 8
 	11.1
 
 Subtraction with constants
@@ -88,5 +86,6 @@ An example using the `sqrt()` function in qc:
 
 0.4: Stripped down functionality to only obviously useful flags
 
+0.5: Python 3 compatibility as suggested by Ondrej Nekola, accept spaces in input for standard math operators (+,-,*,/,%,\*\*)
 #Known issues
 May lag on first use while the Python interpreter starts

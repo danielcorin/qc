@@ -1,16 +1,14 @@
 #!/bin/bash
 
-VERSION=0.4
+VERSION=0.5
 
-PLATFORM=$(uname)
+PLATFORM=$(uname -s)
 
-if [ $# -ne 1 ];
-then
+if [ $# -eq 0 ]; then
 	echo
 	echo USAGE:
 	echo "qc <expression>"
-	echo "Expression should be surrounded quotes or have no spaces."
-	echo "Expressions with parentheses require quotes."
+	echo "Expressions with parentheses or command line operators require quotes."
 	echo
 	echo Options:	
 	echo -a: about
@@ -21,6 +19,7 @@ then
 	exit
 fi
 
+if [ $# -eq 1 ]; then
 case "$1" in
 -a)
 	echo
@@ -40,13 +39,16 @@ case "$1" in
 	echo "Examples using Python syntax for operators:"
 	echo "Add: 1+4"
 	echo "Subtract: 3-pi"
-	echo "Multiply: 6.2*7"
+	echo "Multiply: 6.2 * 7"
 	echo "Divide: 3.0/8"
 	echo "Exponents: 2**10"
-	echo "Modulus: 7%2"
+	echo "Modulus: 7 % 2"
 	echo
 	echo "It handles simple expression such as 10**8+1 nicely."
 	echo "Expressions with binary operators or parentheses must be passed with quotes: 'exp(2.7)' or \"1 << 4\""
+	echo
+	echo "qc will return a blank new line on OSX if the expression is invalid."
+	echo "On Linux, an invalid use error is displayed."
 	echo
 	exit
 	;;
@@ -66,6 +68,7 @@ case "$1" in
 	exit
 	;;
 esac
+fi
 
 if [ "$PLATFORM" == "Linux" ]; then
 # spacing is important here
@@ -73,14 +76,14 @@ if [ "$PLATFORM" == "Linux" ]; then
 import pygtk
 pygtk.require('2.0')
 import gtk
-evaluated = $1
+evaluated = str($*)
 clipboard = gtk.clipboard_get()
-clipboard.set_text(str(evaluated))
+clipboard.set_text(evaluated)
 clipboard.store()
-print evaluated" 2> /dev/null
+print(evaluated)" 2> /dev/null
 
 elif [ "$PLATFORM" == "Darwin" ]; then
-	python -c "from math import *; print $1" 2> /dev/null | tr -d '\n' | pbcopy 
+	python -c "from math import *; print(str($*))" 2> /dev/null| tr -d '\n' | pbcopy 
 	pbpaste
 	echo
 else
