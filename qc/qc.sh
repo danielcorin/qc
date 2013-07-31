@@ -48,7 +48,7 @@ case "$1" in
 	echo "Expressions with binary operators or parentheses must be passed with quotes: 'exp(2.7)' or \"1 << 4\""
 	echo
 	echo "qc will return a blank new line on OSX if the expression is invalid."
-	echo "On Linux, an invalid use error is displayed."
+	echo "On Linux, an \"invalid use\" error is displayed."
 	echo
 	exit
 	;;

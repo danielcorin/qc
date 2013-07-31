@@ -12,7 +12,7 @@ qc is a command line tool that calculates in-line math expressions with no pipes
 * You should be ready to use the script!
 
 #Usage
-qc <expression\>
+`qc <expression>`
 
 Expressions with parentheses or command line operators require quotes.
 
