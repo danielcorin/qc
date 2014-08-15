@@ -86,6 +86,6 @@ An example using the `sqrt()` function in qc:
 
 0.4: Stripped down functionality to only obviously useful flags
 
-0.5: Python 3 compatibility as suggested by Ondrej Nekola, accept spaces in input for standard math operators (+,-,*,/,%,\*\*)
+0.5: Python 3 compatibility as suggested by Ondrej Nekola, accept spaces in input for standard math operators (+,-,\*,/,%)
 #Known issues
 May lag on first use while the Python interpreter starts
