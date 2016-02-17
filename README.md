@@ -18,14 +18,14 @@ Expressions with parentheses or command line operators require quotes.
 
 Options:
 
--a: about
-
--h: help
-
--s: Python shell with math library
-
--v: version
-
+	-a: about
+	
+	-h: help
+	
+	-s: Python shell with math library
+	
+	-v: version
+	
 
 #Examples
 
