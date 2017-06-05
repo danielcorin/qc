@@ -1,7 +1,7 @@
-#qc
+# qc
 qc is a command line tool that calculates in-line math expressions with no pipes or command line tricks. The result of the calculation is displayed in the the command line and automatically copied to the clipboard for ease of use.
 
-#Installing qc
+# Installing qc
 * Download the source code
 * Save the code in a plain text file named qc.sh
 * Move the script to a directory where it will not be modified
@@ -11,7 +11,7 @@ qc is a command line tool that calculates in-line math expressions with no pipes
 * Add `alias qc="/path/to/qc.sh"` to the file, save and close
 * You should be ready to use the script!
 
-#Usage
+# Usage
 `qc <expression>`
 
 Expressions with parentheses or command line operators require quotes.
@@ -27,7 +27,7 @@ Options:
 	-v: version
 	
 
-#Examples
+# Examples
 
 Addition
 
@@ -77,7 +77,7 @@ An example using the `sqrt()` function in qc:
 	3.08220700148
 
 
-#Version history
+# Version history
 0.1: Pass command line input to Python interpreter for calculation
 
 0.2: Add output to clipboard (for OSX)
@@ -87,5 +87,6 @@ An example using the `sqrt()` function in qc:
 0.4: Stripped down functionality to only obviously useful flags
 
 0.5: Python 3 compatibility as suggested by Ondrej Nekola, accept spaces in input for standard math operators (+,-,\*,/,%)
-#Known issues
+
+# Known issues
 May lag on first use while the Python interpreter starts
