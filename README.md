@@ -1,4 +1,4 @@
-# qc
+# qc (quick calc)
 qc is a command line tool that calculates in-line math expressions with no pipes or command line tricks. The result of the calculation is displayed in the the command line and automatically copied to the clipboard for ease of use.
 
 # Installing qc
